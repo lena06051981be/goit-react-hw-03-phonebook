@@ -15,6 +15,25 @@ class App extends Component {
     filter: '',
   }
 
+  componentDidMount() {
+    const localStorageContacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(localStorageContacts);
+
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    };
+    console.log(localStorage);
+  };
+
+  // componentDidUpdate(prevProps, prevState) {
+
+  componentDidUpdate(_, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    };
+    console.log(localStorage);
+  };
+
   formSubmitHandler = event => {
     const newContact = {
       id: event.id,
