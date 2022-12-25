@@ -72,9 +72,11 @@ componentDidMount() {
 
   
   handleDelete = selectedId => {
-    this.setState(prevState => ({
+    this.setState(prevState => {
+      return {
       contacts: prevState.contacts.filter(contact => contact.id !== selectedId),
-    }));
+      };
+    });
   };
 
   changeFilter = event => {
